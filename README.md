@@ -1,2 +1,4 @@
 # go-to-json
-Transform Go Struct to Json
+[WIP] Transform Go Struct to Json
+
+## Not working, this is a test zone

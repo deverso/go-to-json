@@ -1,7 +1,7 @@
 package main
 
 import (
-	// "encoding/json"
+	"encoding/json"
 	"log"
 	"net/http"
 	"text/template"
@@ -9,8 +9,24 @@ import (
 
 var tmpl = template.Must(template.ParseGlob("form/*"))
 
+type Dog struct {
+	Breed    string
+	WeightKg int
+}
+
+type Page struct {
+	Json string
+	Go string
+}
+
 func Index(w http.ResponseWriter, r *http.Request) {
-    tmpl.ExecuteTemplate(w, "Index", nil)
+	d := Dog{
+		Breed:    "dalmation",
+		WeightKg: 45,
+	}
+	b, _ := json.Marshal(d)
+	json := Page{Json: string(b)}
+    tmpl.ExecuteTemplate(w, "Index", json)
 }
 
 func main () {
