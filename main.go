@@ -3,24 +3,18 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 )
 
-type Arc struct {
-	Head     string
-	Modifier string
+type Dog struct {
+	Breed    string
+	WeightKg int
 }
 
 func main() {
-	arc := Arc{"saw", "He"}
-	fmt.Printf("%v\n", arc)
-	fmt.Printf("%+v\n", arc)
-	fmt.Printf("%#v\n", arc)
-
-	// Convert structs to JSON.
-	data, err := json.Marshal(arc)
-	if err != nil {
-		log.Fatal(err)
+	d := Dog{
+		Breed:    "dalmation",
+		WeightKg: 45,
 	}
-	fmt.Printf("%s\n", data)
+	b, _ := json.Marshal(d)
+	fmt.Println(string(b))
 }
