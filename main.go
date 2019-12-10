@@ -2,11 +2,22 @@ package main
 
 import (
 	// "encoding/json"
-	"fmt"
+	"log"
+	"net/http"
+	"text/template"
 )
 
+var tmpl = template.Must(template.ParseGlob("form/*"))
+
+func Index(w http.ResponseWriter, r *http.Request) {
+    tmpl.ExecuteTemplate(w, "Index", nil)
+}
+
 func main () {
-	fmt.Println("Testeeee")
+	log.Println("Server started on: http://localhost:8080")
+	http.HandleFunc("/", Index)
+
+	http.ListenAndServe(":8080", nil)
 }
 
 // type Dog struct {
